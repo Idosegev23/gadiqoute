@@ -503,6 +503,200 @@ app.post('/api/send-approval', async (req, res) => {
   }
 });
 
+// API endpoint to send contract
+app.post('/api/send-contract', async (req, res) => {
+  try {
+    const { formData, developerSignature, clientSignature, pdfBase64 } = req.body;
+
+    if (!formData || !developerSignature || !clientSignature || !pdfBase64) {
+      return res.status(400).json({ 
+        success: false, 
+        message: 'חסרים פרטים נדרשים' 
+      });
+    }
+
+    // Convert PDF base64 to buffer
+    const pdfBuffer = Buffer.from(pdfBase64.replace(/^data:application\/pdf;base64,/, ''), 'base64');
+    
+    // Convert signatures to buffers
+    const developerSigBuffer = Buffer.from(developerSignature.replace(/^data:image\/png;base64,/, ''), 'base64');
+    const clientSigBuffer = Buffer.from(clientSignature.replace(/^data:image\/png;base64,/, ''), 'base64');
+
+    const date = new Date().toLocaleDateString('he-IL', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+
+    // Email to Triroars with contract
+    const triroarsMailOptions = {
+      from: 'triroars@gmail.com',
+      to: 'triroars@gmail.com',
+      subject: `📄 הסכם פיתוח חתום - ${formData.clientFullName}`,
+      html: `
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #F2E8C3; padding: 20px; direction: rtl; }
+    .container { max-width: 600px; margin: 0 auto; background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+    .header { background: linear-gradient(135deg, #193752 0%, #2a4a65 100%); padding: 40px; text-align: center; color: white; }
+    .header h1 { margin: 0; font-size: 28px; }
+    .content { padding: 40px; }
+    .badge { background: linear-gradient(135deg, #F5A219 0%, #F27612 100%); color: white; padding: 15px; border-radius: 50px; text-align: center; font-size: 20px; font-weight: bold; margin: 20px 0; }
+    .info-box { background: #F2E8C3; padding: 20px; border-radius: 10px; margin: 20px 0; border-right: 4px solid #F27612; }
+    .info-row { display: flex; justify-content: space-between; margin: 10px 0; padding: 10px; background: white; border-radius: 8px; }
+    .label { font-weight: bold; color: #193752; }
+    .value { color: #F27612; }
+    .footer { background: #193752; color: white; padding: 30px; text-align: center; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>📄 הסכם פיתוח חתום!</h1>
+    </div>
+    <div class="content">
+      <div class="badge">✓ הסכם נחתם בהצלחה</div>
+      <p style="font-size: 18px; line-height: 1.8;">
+        שלום צוות Triroars,<br><br>
+        הלקוח חתם על הסכם הפיתוח עבור <strong>"תוכנית ההבראה הפיננסית הדיגיטלית"</strong>.
+      </p>
+      <div class="info-box">
+        <div class="info-row"><span class="label">שם הלקוח:</span><span class="value">${formData.clientFullName}</span></div>
+        <div class="info-row"><span class="label">אימייל:</span><span class="value">${formData.clientEmail}</span></div>
+        <div class="info-row"><span class="label">ח.פ / ע.מ:</span><span class="value">${formData.clientLicense || 'לא צוין'}</span></div>
+        <div class="info-row"><span class="label">כתובת:</span><span class="value">${formData.clientAddress || 'לא צוינה'}</span></div>
+        <div class="info-row"><span class="label">תאריך חתימה:</span><span class="value">${date}</span></div>
+      </div>
+      <p style="color: #193752; font-weight: bold; font-size: 18px; margin-top: 30px;">
+        ההסכם המלא מצורף כקובץ PDF.
+      </p>
+      <p style="background: #F5A219; color: white; padding: 15px; border-radius: 10px; margin-top: 20px;">
+        <strong>שלב הבא:</strong> התחלת פיתוח לאחר קבלת התשלום הראשון (30% - 9,900 ₪ + מע"מ)
+      </p>
+    </div>
+    <div class="footer">
+      <h3>Triroars 🦁</h3>
+      <p>עיצוב ופיתוח חוויות דיגיטליות</p>
+    </div>
+  </div>
+</body>
+</html>
+      `,
+      attachments: [
+        {
+          filename: `הסכם_פיתוח_${formData.clientFullName}.pdf`,
+          content: pdfBuffer,
+          contentType: 'application/pdf'
+        },
+        {
+          filename: 'developer_signature.png',
+          content: developerSigBuffer,
+          contentType: 'image/png'
+        },
+        {
+          filename: 'client_signature.png',
+          content: clientSigBuffer,
+          contentType: 'image/png'
+        }
+      ]
+    };
+
+    // Email to Client with contract
+    const clientMailOptions = {
+      from: 'triroars@gmail.com',
+      to: formData.clientEmail,
+      subject: '✅ הסכם הפיתוח שלך - תוכנית ההבראה הפיננסית הדיגיטלית',
+      html: `
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #F2E8C3; padding: 20px; direction: rtl; }
+    .container { max-width: 600px; margin: 0 auto; background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+    .header { background: linear-gradient(135deg, #193752 0%, #2a4a65 100%); padding: 40px; text-align: center; color: white; }
+    .header h1 { margin: 0; font-size: 28px; }
+    .content { padding: 40px; }
+    .success { background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 30px; border-radius: 15px; text-align: center; margin: 20px 0; font-size: 22px; font-weight: bold; }
+    .info-box { background: #F2E8C3; padding: 20px; border-radius: 10px; margin: 20px 0; }
+    .next-step { background: #F5A219; color: white; padding: 20px; border-radius: 15px; margin: 20px 0; }
+    .footer { background: #193752; color: white; padding: 30px; text-center; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🎉 ההסכם נחתם בהצלחה!</h1>
+    </div>
+    <div class="content">
+      <div class="success">ההסכם שלך מוכן ✓</div>
+      <p style="font-size: 18px; line-height: 1.8;">
+        שלום ${formData.clientFullName},<br><br>
+        תודה שחתמת על הסכם הפיתוח!<br>
+        מצורף העותק החתום שלך בפורמט PDF.
+      </p>
+      <div class="info-box">
+        <h3 style="color: #193752; margin-top: 0;">📋 פרטי ההסכם</h3>
+        <p><strong>פרויקט:</strong> תוכנית ההבראה הפיננסית הדיגיטלית</p>
+        <p><strong>משך:</strong> 8 שבועות</p>
+        <p><strong>עלות כוללת:</strong> 33,000 ₪ + מע"מ</p>
+        <p><strong>תאריך חתימה:</strong> ${date}</p>
+      </div>
+      <div class="next-step">
+        <h3 style="margin-top: 0;">🚀 השלב הבא</h3>
+        <p>נשלח אליך חשבונית לתשלום הראשון:</p>
+        <p style="font-size: 24px; font-weight: bold; margin: 15px 0;">9,900 ₪ + מע"מ (30%)</p>
+        <p style="font-size: 14px;">לאחר קבלת התשלום, נתחיל בפיתוח מיד!</p>
+      </div>
+      <p style="text-align: center; color: #193752; margin-top: 30px;">
+        <strong>שאלות?</strong> ניתן לפנות אלינו בכל עת:<br>
+        📧 triroars@gmail.com
+      </p>
+    </div>
+    <div class="footer">
+      <h3>Triroars 🦁</h3>
+      <p>עיצוב ופיתוח חוויות דיגיטליות</p>
+      <p style="font-size: 12px; opacity: 0.8; margin-top: 15px;">© 2025 Triroars - כל הזכויות שמורות</p>
+    </div>
+  </div>
+</body>
+</html>
+      `,
+      attachments: [
+        {
+          filename: `הסכם_פיתוח_${formData.clientFullName}.pdf`,
+          content: pdfBuffer,
+          contentType: 'application/pdf'
+        }
+      ]
+    };
+
+    // Send both emails
+    await Promise.all([
+      transporter.sendMail(triroarsMailOptions),
+      transporter.sendMail(clientMailOptions)
+    ]);
+
+    res.json({ 
+      success: true, 
+      message: 'ההסכם נשלח בהצלחה!' 
+    });
+
+  } catch (error) {
+    console.error('Error sending contract:', error);
+    res.status(500).json({ 
+      success: false, 
+      message: 'שגיאה בשליחת ההסכם',
+      error: error.message 
+    });
+  }
+});
+
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Server is running' });

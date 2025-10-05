@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SignatureCanvas from 'react-signature-canvas';
+import Contract from './Contract';
 import { 
   Sparkles, 
   Target, 
@@ -24,6 +25,7 @@ import {
 
 const App = () => {
   const [showModal, setShowModal] = useState(false);
+  const [showContract, setShowContract] = useState(false);
   const [clientName, setClientName] = useState('');
   const [clientEmail, setClientEmail] = useState('');
   const [isSending, setIsSending] = useState(false);
@@ -83,10 +85,8 @@ const App = () => {
         setTimeout(() => {
           setShowModal(false);
           setShowSuccess(false);
-          setClientName('');
-          setClientEmail('');
-          signatureRef.current?.clear();
-        }, 3000);
+          setShowContract(true);
+        }, 2000);
       } else {
         setError(data.message || 'שגיאה בשליחת האישור');
       }
@@ -112,6 +112,22 @@ const App = () => {
       }
     }
   };
+
+  // Show contract page if approved
+  if (showContract) {
+    return (
+      <Contract 
+        clientName={clientName} 
+        clientEmail={clientEmail}
+        onBack={() => {
+          setShowContract(false);
+          setClientName('');
+          setClientEmail('');
+          signatureRef.current?.clear();
+        }}
+      />
+    );
+  }
 
   return (
     <div className="min-h-screen bg-cream font-heebo">
