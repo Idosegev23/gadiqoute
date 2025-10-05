@@ -307,9 +307,9 @@ const Contract = ({ clientName, clientEmail, onBack }) => {
                 <h2 className="text-2xl font-bold text-orange mb-3">1. מטרת ההסכם</h2>
                 <p className="text-justify">
                   המפתח יפתח עבור הלקוח מערכת אינטרנטית אינטראקטיבית בשם <strong>"תוכנית ההבראה הפיננסית הדיגיטלית"</strong> (להלן: "המערכת")
-                  בהתאם לאפיון הטכני והמסמכים המצורפים להסכם זה (להלן: "מסמכי האפיון").
+                  בהתאם לאפיון הטכני והמסמכים המצורפים להסכם זה כ<strong>נספח א׳</strong> (להלן: "מסמכי האפיון").
                   המערכת תכלול ממשק משתמש, אזור אדמין, אינטגרציה עם WhatsApp, ממשק בינה מלאכותית (OpenAI), OCR,
-                  ואינטגרציה למערכת חשבונית ירוקה לסליקה חוזרת.
+                  ואינטגרציה למערכת חשבונית ירוקה לסליקה חוזרת, כמפורט ב<strong>נספח ב׳</strong> (רשימת טכנולוגיות).
                 </p>
               </section>
 
@@ -344,6 +344,7 @@ const Contract = ({ clientName, clientEmail, onBack }) => {
                 <h2 className="text-2xl font-bold text-orange mb-3">3. תשלומים ותנאים כספיים</h2>
                 <p className="mb-4">
                   <strong>סה״כ עלות הפיתוח: 33,000 ₪ (לא כולל מע״מ).</strong><br />
+                  פירוט מלא של עלויות הפיתוח מופיע ב<strong>נספח ג׳</strong>.<br />
                   התשלומים יתבצעו לפי אבני הדרך הבאות:
                 </p>
                 <div className="bg-white rounded-xl overflow-hidden border-2 border-navy/10">
@@ -390,8 +391,9 @@ const Contract = ({ clientName, clientEmail, onBack }) => {
                   <li>גיבויים ובדיקות תפקוד</li>
                   <li>תמיכה טכנית (עד 5 שעות בחודש)</li>
                 </ul>
-                <p className="mt-3 text-sm">
-                  דמי התחזוקה יקבעו במעמד החתימה או תחילת ההתקשרות השוטפת.
+                <p className="mt-3">
+                  <strong>דמי תחזוקה חודשית: 1,000 ₪ (כולל מע״מ).</strong><br />
+                  פירוט עלויות נלוות והיקף שימוש משוער מופיע ב<strong>נספח ד׳</strong>.
                 </p>
               </section>
 
@@ -442,6 +444,277 @@ const Contract = ({ clientName, clientEmail, onBack }) => {
                 <p>
                   הצדדים מסכימים כי כל מחלוקת תתברר בבית משפט מוסמך באזור תל אביב בלבד.
                 </p>
+              </section>
+
+              <section>
+                <h2 className="text-2xl font-bold text-orange mb-3">12. נספחים</h2>
+                <p className="mb-3">
+                  הנספחים המפורטים להלן מהווים חלק בלתי נפרד מהסכם זה:
+                </p>
+                <ul className="list-disc list-inside space-y-2">
+                  <li><strong>נספח א׳</strong> – אפיון טכני מפורט ומטרות המערכת</li>
+                  <li><strong>נספח ב׳</strong> – רשימת טכנולוגיות וכלי פיתוח</li>
+                  <li><strong>נספח ג׳</strong> – פירוט עלויות פיתוח לפי רכיבים</li>
+                  <li><strong>נספח ד׳</strong> – תרחישים עסקיים ועלויות תפעול חודשיות</li>
+                </ul>
+              </section>
+            </div>
+
+            {/* === נספחים === */}
+            <div className="mt-16 pt-8 border-t-4 border-navy">
+              <h1 className="text-4xl font-bold text-navy text-center mb-12">נספחים להסכם</h1>
+
+              {/* נספח א׳ - אפיון */}
+              <section className="mb-12">
+                <div className="bg-orange text-white p-4 rounded-t-2xl">
+                  <h2 className="text-3xl font-bold">נספח א׳ – אפיון טכני ומטרות המערכת</h2>
+                </div>
+                <div className="bg-cream/50 p-8 rounded-b-2xl">
+                  <h3 className="text-2xl font-bold text-navy mb-4">מטרות המערכת</h3>
+                  <ul className="space-y-3 mb-6">
+                    <li className="flex items-start gap-3">
+                      <span className="text-warm-yellow text-xl">•</span>
+                      <span>להנגיש ניהול תקציב לכל אדם</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-warm-yellow text-xl">•</span>
+                      <span>לספק ליווי פיננסי שוטף בצורה פשוטה, קלילה ואנושית</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-warm-yellow text-xl">•</span>
+                      <span>להפוך נתונים פיננסיים לתהליך מובן ומעורר מוטיבציה</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-warm-yellow text-xl">•</span>
+                      <span>ליצור חוויית שימוש צעירה וזורמת בשפה מדוברת</span>
+                    </li>
+                  </ul>
+
+                  <h3 className="text-2xl font-bold text-navy mb-4 mt-8">מבנה המערכת</h3>
+                  
+                  <div className="space-y-6">
+                    <div className="bg-white p-6 rounded-xl border-r-4 border-warm-yellow">
+                      <h4 className="text-xl font-bold text-orange mb-3">🌐 אתר ציבורי (SaaS)</h4>
+                      <ul className="space-y-2">
+                        <li>• דף בית שיווקי שמעביר את הערך בשלוש שניות</li>
+                        <li>• הרשמה ותשלום בהוראת קבע דרך חשבונית ירוקה</li>
+                        <li>• סרטון הסבר קצר / אנימציה על התהליך</li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-white p-6 rounded-xl border-r-4 border-orange">
+                      <h4 className="text-xl font-bold text-orange mb-3">👤 אזור משתמש</h4>
+                      <ul className="space-y-2">
+                        <li>• דשבורד עם מד בריאות פיננסית</li>
+                        <li>• גרפים של הכנסות והוצאות</li>
+                        <li>• אפשרות להזין הוצאות ידנית או דרך וואטסאפ</li>
+                        <li>• ניתוח OCR של קבלות</li>
+                        <li>• יעדים וחיסכון</li>
+                        <li>• תמיכה מלאה במובייל</li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-white p-6 rounded-xl border-r-4 border-green-500">
+                      <h4 className="text-xl font-bold text-orange mb-3">💬 וואטסאפ דו־כיווני</h4>
+                      <ul className="space-y-2">
+                        <li>• הודעות חכמות ותזכורות</li>
+                        <li>• קבלת הודעות טקסט ותמונות מהמשתמש</li>
+                        <li>• ניתוח אוטומטי והוספה למערכת</li>
+                        <li>• שיחה עם בוט AI שמעניק תובנות אישיות</li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-white p-6 rounded-xl border-r-4 border-red-brown">
+                      <h4 className="text-xl font-bold text-orange mb-3">🛡️ ממשק אדמין</h4>
+                      <ul className="space-y-2">
+                        <li>• צפייה בסטטוס משתמשים</li>
+                        <li>• ניהול הודעות, מנויים ונתוני מערכת</li>
+                        <li>• הפקת דוחות שימוש ופעילות</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* נספח ב׳ - טכנולוגיות */}
+              <section className="mb-12">
+                <div className="bg-orange text-white p-4 rounded-t-2xl">
+                  <h2 className="text-3xl font-bold">נספח ב׳ – טכנולוגיות וכלי פיתוח</h2>
+                </div>
+                <div className="bg-cream/50 p-8 rounded-b-2xl">
+                  <div className="bg-white p-8 rounded-xl text-center">
+                    <p className="text-2xl text-navy font-bold mb-4">
+                      React + Supabase + GreenAPI + OpenAI + Green Invoice + Vercel
+                    </p>
+                    <p className="text-lg text-navy/70">
+                      עיצוב עם Tailwind / MagicUI, אנימציות Framer Motion
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              {/* נספח ג׳ - עלויות פיתוח */}
+              <section className="mb-12">
+                <div className="bg-orange text-white p-4 rounded-t-2xl">
+                  <h2 className="text-3xl font-bold">נספח ג׳ – פירוט עלויות פיתוח</h2>
+                </div>
+                <div className="bg-cream/50 p-8 rounded-b-2xl">
+                  <div className="bg-white rounded-xl overflow-hidden border-2 border-navy/10">
+                    <table className="w-full text-right">
+                      <thead className="bg-navy text-white">
+                        <tr>
+                          <th className="px-4 py-4 text-lg">רכיב</th>
+                          <th className="px-4 py-4 text-lg">תיאור</th>
+                          <th className="px-4 py-4 text-lg">שעות</th>
+                          <th className="px-4 py-4 text-lg">עלות (₪)</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-navy/10">
+                        <tr className="hover:bg-cream/30">
+                          <td className="px-4 py-4 font-bold">אפיון ו־UX</td>
+                          <td className="px-4 py-4">תכנון חוויית משתמש ומסכים</td>
+                          <td className="px-4 py-4 font-semibold">12</td>
+                          <td className="px-4 py-4 font-bold text-warm-yellow">4,200</td>
+                        </tr>
+                        <tr className="hover:bg-cream/30">
+                          <td className="px-4 py-4 font-bold">דף שיווקי SaaS</td>
+                          <td className="px-4 py-4">Hero, CTA, סליקה</td>
+                          <td className="px-4 py-4 font-semibold">10</td>
+                          <td className="px-4 py-4 font-bold text-warm-yellow">3,500</td>
+                        </tr>
+                        <tr className="hover:bg-cream/30">
+                          <td className="px-4 py-4 font-bold">מערכת משתמשים</td>
+                          <td className="px-4 py-4">דשבורד, גרפים, תקציב, יעדים</td>
+                          <td className="px-4 py-4 font-semibold">20</td>
+                          <td className="px-4 py-4 font-bold text-warm-yellow">7,000</td>
+                        </tr>
+                        <tr className="hover:bg-cream/30">
+                          <td className="px-4 py-4 font-bold">וואטסאפ GreenAPI</td>
+                          <td className="px-4 py-4">שליחה, קליטה, webhook</td>
+                          <td className="px-4 py-4 font-semibold">10</td>
+                          <td className="px-4 py-4 font-bold text-warm-yellow">3,500</td>
+                        </tr>
+                        <tr className="hover:bg-cream/30">
+                          <td className="px-4 py-4 font-bold">אינטגרציית OpenAI</td>
+                          <td className="px-4 py-4">שיחות בוט חכמות</td>
+                          <td className="px-4 py-4 font-semibold">8</td>
+                          <td className="px-4 py-4 font-bold text-warm-yellow">2,800</td>
+                        </tr>
+                        <tr className="hover:bg-cream/30">
+                          <td className="px-4 py-4 font-bold">OCR</td>
+                          <td className="px-4 py-4">זיהוי קבלות אוטומטי</td>
+                          <td className="px-4 py-4 font-semibold">6</td>
+                          <td className="px-4 py-4 font-bold text-warm-yellow">2,100</td>
+                        </tr>
+                        <tr className="hover:bg-cream/30">
+                          <td className="px-4 py-4 font-bold">ממשק אדמין</td>
+                          <td className="px-4 py-4">ניהול משתמשים ודוחות</td>
+                          <td className="px-4 py-4 font-semibold">8</td>
+                          <td className="px-4 py-4 font-bold text-warm-yellow">2,800</td>
+                        </tr>
+                        <tr className="hover:bg-cream/30">
+                          <td className="px-4 py-4 font-bold">QA ונגישות</td>
+                          <td className="px-4 py-4">בדיקות, תיקונים והשקה</td>
+                          <td className="px-4 py-4 font-semibold">6</td>
+                          <td className="px-4 py-4 font-bold text-warm-yellow">2,100</td>
+                        </tr>
+                        <tr className="bg-warm-yellow/20 font-bold text-xl">
+                          <td className="px-4 py-5" colSpan="2">סה״כ פיתוח:</td>
+                          <td className="px-4 py-5">80 שעות</td>
+                          <td className="px-4 py-5 text-orange text-2xl">33,000 ₪</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p className="text-center mt-4 text-navy/70">* המחירים אינם כוללים מע"מ</p>
+                </div>
+              </section>
+
+              {/* נספח ד׳ - עלויות תפעול */}
+              <section className="mb-12">
+                <div className="bg-orange text-white p-4 rounded-t-2xl">
+                  <h2 className="text-3xl font-bold">נספח ד׳ – תרחישים עסקיים ועלויות תפעול</h2>
+                </div>
+                <div className="bg-cream/50 p-8 rounded-b-2xl space-y-8">
+                  <div>
+                    <h3 className="text-2xl font-bold text-navy mb-4">תרחישי שימוש משוערים</h3>
+                    <div className="bg-white rounded-xl overflow-hidden border-2 border-navy/10">
+                      <table className="w-full text-right">
+                        <thead className="bg-navy text-white">
+                          <tr>
+                            <th className="px-4 py-4">משתמשים פעילים</th>
+                            <th className="px-4 py-4">הודעות/יום</th>
+                            <th className="px-4 py-4">עלות וואטסאפ</th>
+                            <th className="px-4 py-4">עלות AI</th>
+                            <th className="px-4 py-4">אחסון</th>
+                            <th className="px-4 py-4 bg-warm-yellow text-navy">סה"כ חודשי</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-navy/10">
+                          <tr className="hover:bg-cream/30">
+                            <td className="px-4 py-4 font-bold">50</td>
+                            <td className="px-4 py-4">200</td>
+                            <td className="px-4 py-4">₪40</td>
+                            <td className="px-4 py-4">₪20</td>
+                            <td className="px-4 py-4">₪10</td>
+                            <td className="px-4 py-4 font-bold text-xl text-warm-yellow">₪70</td>
+                          </tr>
+                          <tr className="hover:bg-cream/30">
+                            <td className="px-4 py-4 font-bold">100</td>
+                            <td className="px-4 py-4">400</td>
+                            <td className="px-4 py-4">₪70</td>
+                            <td className="px-4 py-4">₪40</td>
+                            <td className="px-4 py-4">₪20</td>
+                            <td className="px-4 py-4 font-bold text-xl text-warm-yellow">₪120</td>
+                          </tr>
+                          <tr className="hover:bg-cream/30">
+                            <td className="px-4 py-4 font-bold">500</td>
+                            <td className="px-4 py-4">2,000</td>
+                            <td className="px-4 py-4">₪250</td>
+                            <td className="px-4 py-4">₪100</td>
+                            <td className="px-4 py-4">₪50</td>
+                            <td className="px-4 py-4 font-bold text-xl text-warm-yellow">₪400</td>
+                          </tr>
+                          <tr className="hover:bg-cream/30">
+                            <td className="px-4 py-4 font-bold">1,000</td>
+                            <td className="px-4 py-4">4,000</td>
+                            <td className="px-4 py-4">₪500</td>
+                            <td className="px-4 py-4">₪200</td>
+                            <td className="px-4 py-4">₪100</td>
+                            <td className="px-4 py-4 font-bold text-xl text-warm-yellow">₪800</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <p className="text-center mt-4 text-sm text-navy/60">* העלויות משוערות ותלויות בהיקף שימוש אמיתי</p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-2xl font-bold text-navy mb-4">עלויות נלוות חודשיות</h3>
+                    <div className="bg-white rounded-xl overflow-hidden border-2 border-navy/10">
+                      <table className="w-full text-right">
+                        <thead className="bg-navy text-white">
+                          <tr>
+                            <th className="px-4 py-4">רכיב</th>
+                            <th className="px-4 py-4">עלות חודשית</th>
+                            <th className="px-4 py-4">פירוט</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-navy/10">
+                          <tr><td className="px-4 py-4 font-bold">GreenAPI</td><td className="px-4 py-4 font-semibold text-warm-yellow">₪50–500</td><td className="px-4 py-4">הודעות דו־כיווניות בוואטסאפ</td></tr>
+                          <tr><td className="px-4 py-4 font-bold">OpenAI</td><td className="px-4 py-4 font-semibold text-warm-yellow">₪20–200</td><td className="px-4 py-4">שיחות עם הבוט</td></tr>
+                          <tr><td className="px-4 py-4 font-bold">Supabase</td><td className="px-4 py-4 font-semibold text-warm-yellow">₪25–100</td><td className="px-4 py-4">אחסון נתונים ואימות</td></tr>
+                          <tr><td className="px-4 py-4 font-bold">דומיין ו־SSL</td><td className="px-4 py-4 font-semibold text-warm-yellow">₪15</td><td className="px-4 py-4">תחזוקה בסיסית</td></tr>
+                          <tr className="bg-orange/20 font-bold text-xl">
+                            <td className="px-4 py-5">סה"כ משוער:</td>
+                            <td className="px-4 py-5 text-orange text-2xl">₪100–800</td>
+                            <td className="px-4 py-5 text-navy/70">תלוי בכמות המשתמשים</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
               </section>
             </div>
 
