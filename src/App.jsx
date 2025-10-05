@@ -458,17 +458,17 @@ const App = () => {
             <div className="w-24 h-1 bg-warm-yellow mx-auto rounded-full" />
           </motion.div>
 
-          <motion.div variants={fadeInUp} className="overflow-x-auto">
-            <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-navy/10">
+          <motion.div variants={fadeInUp} className="overflow-x-auto -mx-6 px-6 md:mx-0 md:px-0">
+            <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-navy/10 min-w-[800px] md:min-w-0">
               <table className="w-full text-right">
                 <thead className="bg-navy text-white">
                   <tr>
-                    <th className="px-6 py-5 text-lg font-bold">משתמשים פעילים</th>
-                    <th className="px-6 py-5 text-lg font-bold">הודעות/יום</th>
-                    <th className="px-6 py-5 text-lg font-bold">עלות וואטסאפ</th>
-                    <th className="px-6 py-5 text-lg font-bold">עלות AI</th>
-                    <th className="px-6 py-5 text-lg font-bold">אחסון Supabase</th>
-                    <th className="px-6 py-5 text-lg font-bold bg-warm-yellow text-navy">סה"כ חודשי</th>
+                    <th className="px-3 md:px-6 py-4 md:py-5 text-sm md:text-lg font-bold whitespace-nowrap">משתמשים פעילים</th>
+                    <th className="px-3 md:px-6 py-4 md:py-5 text-sm md:text-lg font-bold whitespace-nowrap">הודעות/יום</th>
+                    <th className="px-3 md:px-6 py-4 md:py-5 text-sm md:text-lg font-bold whitespace-nowrap">עלות וואטסאפ</th>
+                    <th className="px-3 md:px-6 py-4 md:py-5 text-sm md:text-lg font-bold whitespace-nowrap">עלות AI</th>
+                    <th className="px-3 md:px-6 py-4 md:py-5 text-sm md:text-lg font-bold whitespace-nowrap">אחסון</th>
+                    <th className="px-3 md:px-6 py-4 md:py-5 text-sm md:text-lg font-bold bg-warm-yellow text-navy whitespace-nowrap">סה"כ חודשי</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-navy/10">
@@ -483,12 +483,12 @@ const App = () => {
                       variants={fadeInUp}
                       className="hover:bg-cream/50 transition-colors"
                     >
-                      <td className="px-6 py-5 font-semibold text-navy">{row.users}</td>
-                      <td className="px-6 py-5 text-navy/70">{row.messages.toLocaleString()}</td>
-                      <td className="px-6 py-5 text-navy/70">₪{row.whatsapp}</td>
-                      <td className="px-6 py-5 text-navy/70">₪{row.ai}</td>
-                      <td className="px-6 py-5 text-navy/70">₪{row.storage}</td>
-                      <td className="px-6 py-5 font-bold text-xl text-warm-yellow">₪{row.total}</td>
+                      <td className="px-3 md:px-6 py-4 md:py-5 font-semibold text-navy text-sm md:text-base whitespace-nowrap">{row.users}</td>
+                      <td className="px-3 md:px-6 py-4 md:py-5 text-navy/70 text-sm md:text-base whitespace-nowrap">{row.messages.toLocaleString()}</td>
+                      <td className="px-3 md:px-6 py-4 md:py-5 text-navy/70 text-sm md:text-base whitespace-nowrap">₪{row.whatsapp}</td>
+                      <td className="px-3 md:px-6 py-4 md:py-5 text-navy/70 text-sm md:text-base whitespace-nowrap">₪{row.ai}</td>
+                      <td className="px-3 md:px-6 py-4 md:py-5 text-navy/70 text-sm md:text-base whitespace-nowrap">₪{row.storage}</td>
+                      <td className="px-3 md:px-6 py-4 md:py-5 font-bold text-lg md:text-xl text-warm-yellow whitespace-nowrap">₪{row.total}</td>
                     </motion.tr>
                   ))}
                 </tbody>
@@ -517,15 +517,15 @@ const App = () => {
             <div className="w-24 h-1 bg-warm-yellow mx-auto rounded-full" />
           </motion.div>
 
-          <motion.div variants={fadeInUp} className="overflow-x-auto">
-            <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-navy/10">
+          <motion.div variants={fadeInUp} className="overflow-x-auto -mx-6 px-6 md:mx-0 md:px-0">
+            <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-navy/10 min-w-[700px] md:min-w-0">
               <table className="w-full text-right">
                 <thead className="bg-gradient-to-l from-navy to-[#2a4a65] text-white">
                   <tr>
-                    <th className="px-6 py-5 text-lg font-bold">רכיב</th>
-                    <th className="px-6 py-5 text-lg font-bold">תיאור</th>
-                    <th className="px-6 py-5 text-lg font-bold">שעות</th>
-                    <th className="px-6 py-5 text-lg font-bold bg-warm-yellow text-navy">עלות (₪)</th>
+                    <th className="px-3 md:px-6 py-4 md:py-5 text-sm md:text-lg font-bold whitespace-nowrap">רכיב</th>
+                    <th className="px-3 md:px-6 py-4 md:py-5 text-sm md:text-lg font-bold whitespace-nowrap">תיאור</th>
+                    <th className="px-3 md:px-6 py-4 md:py-5 text-sm md:text-lg font-bold whitespace-nowrap">שעות</th>
+                    <th className="px-3 md:px-6 py-4 md:py-5 text-sm md:text-lg font-bold bg-warm-yellow text-navy whitespace-nowrap">עלות (₪)</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-navy/10">
@@ -544,16 +544,16 @@ const App = () => {
                       variants={fadeInUp}
                       className="hover:bg-cream/30 transition-colors"
                     >
-                      <td className="px-6 py-5 font-bold text-navy">{row.component}</td>
-                      <td className="px-6 py-5 text-navy/70">{row.description}</td>
-                      <td className="px-6 py-5 font-semibold text-navy">{row.hours}</td>
-                      <td className="px-6 py-5 font-bold text-warm-yellow text-lg">{row.cost.toLocaleString()}</td>
+                      <td className="px-3 md:px-6 py-4 md:py-5 font-bold text-navy text-sm md:text-base whitespace-nowrap">{row.component}</td>
+                      <td className="px-3 md:px-6 py-4 md:py-5 text-navy/70 text-sm md:text-base">{row.description}</td>
+                      <td className="px-3 md:px-6 py-4 md:py-5 font-semibold text-navy text-sm md:text-base whitespace-nowrap">{row.hours}</td>
+                      <td className="px-3 md:px-6 py-4 md:py-5 font-bold text-warm-yellow text-base md:text-lg whitespace-nowrap">{row.cost.toLocaleString()}</td>
                     </motion.tr>
                   ))}
-                  <tr className="bg-gradient-to-l from-warm-yellow/20 to-orange/10 font-bold text-xl">
-                    <td className="px-6 py-6 text-navy" colSpan="2">סה״כ פיתוח:</td>
-                    <td className="px-6 py-6 text-navy">80 שעות</td>
-                    <td className="px-6 py-6 text-orange text-2xl">33,000 ₪ + מע״מ</td>
+                  <tr className="bg-gradient-to-l from-warm-yellow/20 to-orange/10 font-bold text-lg md:text-xl">
+                    <td className="px-3 md:px-6 py-5 md:py-6 text-navy whitespace-nowrap" colSpan="2">סה״כ פיתוח:</td>
+                    <td className="px-3 md:px-6 py-5 md:py-6 text-navy whitespace-nowrap">80 שעות</td>
+                    <td className="px-3 md:px-6 py-5 md:py-6 text-orange text-xl md:text-2xl whitespace-nowrap">33,000 ₪ + מע״מ</td>
                   </tr>
                 </tbody>
               </table>
@@ -577,14 +577,14 @@ const App = () => {
             <div className="w-24 h-1 bg-warm-yellow mx-auto rounded-full" />
           </motion.div>
 
-          <motion.div variants={fadeInUp} className="overflow-x-auto">
-            <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-navy/10">
+          <motion.div variants={fadeInUp} className="overflow-x-auto -mx-6 px-6 md:mx-0 md:px-0">
+            <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-navy/10 min-w-[600px] md:min-w-0">
               <table className="w-full text-right">
                 <thead className="bg-navy text-white">
                   <tr>
-                    <th className="px-6 py-5 text-lg font-bold">רכיב</th>
-                    <th className="px-6 py-5 text-lg font-bold">עלות חודשית</th>
-                    <th className="px-6 py-5 text-lg font-bold">פירוט</th>
+                    <th className="px-3 md:px-6 py-4 md:py-5 text-sm md:text-lg font-bold whitespace-nowrap">רכיב</th>
+                    <th className="px-3 md:px-6 py-4 md:py-5 text-sm md:text-lg font-bold whitespace-nowrap">עלות חודשית</th>
+                    <th className="px-3 md:px-6 py-4 md:py-5 text-sm md:text-lg font-bold whitespace-nowrap">פירוט</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-navy/10">
@@ -599,15 +599,15 @@ const App = () => {
                       variants={fadeInUp}
                       className="hover:bg-cream/30 transition-colors"
                     >
-                      <td className="px-6 py-5 font-bold text-navy">{row.component}</td>
-                      <td className="px-6 py-5 font-semibold text-warm-yellow text-lg">{row.cost}</td>
-                      <td className="px-6 py-5 text-navy/70">{row.details}</td>
+                      <td className="px-3 md:px-6 py-4 md:py-5 font-bold text-navy text-sm md:text-base whitespace-nowrap">{row.component}</td>
+                      <td className="px-3 md:px-6 py-4 md:py-5 font-semibold text-warm-yellow text-base md:text-lg whitespace-nowrap">{row.cost}</td>
+                      <td className="px-3 md:px-6 py-4 md:py-5 text-navy/70 text-sm md:text-base">{row.details}</td>
                     </motion.tr>
                   ))}
-                  <tr className="bg-gradient-to-l from-orange/20 to-warm-yellow/20 font-bold text-xl">
-                    <td className="px-6 py-6 text-navy">סה"כ חודשי משוער:</td>
-                    <td className="px-6 py-6 text-orange text-2xl">₪100–800</td>
-                    <td className="px-6 py-6 text-navy/70">תלוי בכמות המשתמשים</td>
+                  <tr className="bg-gradient-to-l from-orange/20 to-warm-yellow/20 font-bold text-base md:text-xl">
+                    <td className="px-3 md:px-6 py-5 md:py-6 text-navy whitespace-nowrap">סה"כ חודשי משוער:</td>
+                    <td className="px-3 md:px-6 py-5 md:py-6 text-orange text-xl md:text-2xl whitespace-nowrap">₪100–800</td>
+                    <td className="px-3 md:px-6 py-5 md:py-6 text-navy/70 text-sm md:text-base">תלוי בכמות המשתמשים</td>
                   </tr>
                 </tbody>
               </table>
@@ -673,14 +673,14 @@ const App = () => {
             <div className="w-24 h-1 bg-warm-yellow mx-auto rounded-full mt-6" />
           </motion.div>
 
-          <motion.div variants={fadeInUp} className="overflow-x-auto">
-            <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-navy/10">
+          <motion.div variants={fadeInUp} className="overflow-x-auto -mx-6 px-6 md:mx-0 md:px-0">
+            <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-navy/10 min-w-[500px] md:min-w-0">
               <table className="w-full text-right">
                 <thead className="bg-gradient-to-l from-orange to-warm-yellow text-white">
                   <tr>
-                    <th className="px-6 py-5 text-lg font-bold">שלב</th>
-                    <th className="px-6 py-5 text-lg font-bold">משך</th>
-                    <th className="px-6 py-5 text-lg font-bold">תוצר</th>
+                    <th className="px-3 md:px-6 py-4 md:py-5 text-sm md:text-lg font-bold whitespace-nowrap">שלב</th>
+                    <th className="px-3 md:px-6 py-4 md:py-5 text-sm md:text-lg font-bold whitespace-nowrap">משך</th>
+                    <th className="px-3 md:px-6 py-4 md:py-5 text-sm md:text-lg font-bold whitespace-nowrap">תוצר</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-navy/10">
@@ -695,9 +695,9 @@ const App = () => {
                       variants={fadeInUp}
                       className="hover:bg-cream/30 transition-colors"
                     >
-                      <td className="px-6 py-5 font-bold text-navy">{row.stage}</td>
-                      <td className="px-6 py-5 font-semibold text-warm-yellow text-lg">{row.duration}</td>
-                      <td className="px-6 py-5 text-navy/70">{row.deliverable}</td>
+                      <td className="px-3 md:px-6 py-4 md:py-5 font-bold text-navy text-sm md:text-base">{row.stage}</td>
+                      <td className="px-3 md:px-6 py-4 md:py-5 font-semibold text-warm-yellow text-base md:text-lg whitespace-nowrap">{row.duration}</td>
+                      <td className="px-3 md:px-6 py-4 md:py-5 text-navy/70 text-sm md:text-base">{row.deliverable}</td>
                     </motion.tr>
                   ))}
                 </tbody>
@@ -722,15 +722,15 @@ const App = () => {
             <div className="w-24 h-1 bg-warm-yellow mx-auto rounded-full" />
           </motion.div>
 
-          <motion.div variants={fadeInUp} className="overflow-x-auto">
-            <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-navy/10">
+          <motion.div variants={fadeInUp} className="overflow-x-auto -mx-6 px-6 md:mx-0 md:px-0">
+            <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-navy/10 min-w-[650px] md:min-w-0">
               <table className="w-full text-right">
                 <thead className="bg-navy text-white">
                   <tr>
-                    <th className="px-6 py-5 text-lg font-bold">שלב</th>
-                    <th className="px-6 py-5 text-lg font-bold">אחוז</th>
-                    <th className="px-6 py-5 text-lg font-bold">סכום (₪)</th>
-                    <th className="px-6 py-5 text-lg font-bold">מועד</th>
+                    <th className="px-3 md:px-6 py-4 md:py-5 text-sm md:text-lg font-bold whitespace-nowrap">שלב</th>
+                    <th className="px-3 md:px-6 py-4 md:py-5 text-sm md:text-lg font-bold whitespace-nowrap">אחוז</th>
+                    <th className="px-3 md:px-6 py-4 md:py-5 text-sm md:text-lg font-bold whitespace-nowrap">סכום (₪)</th>
+                    <th className="px-3 md:px-6 py-4 md:py-5 text-sm md:text-lg font-bold whitespace-nowrap">מועד</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-navy/10">
@@ -745,16 +745,16 @@ const App = () => {
                       variants={fadeInUp}
                       className="hover:bg-cream/30 transition-colors"
                     >
-                      <td className="px-6 py-5 font-bold text-navy">{row.stage}</td>
-                      <td className="px-6 py-5 font-semibold text-orange text-lg">{row.percent}</td>
-                      <td className="px-6 py-5 font-bold text-warm-yellow text-lg">{row.amount}</td>
-                      <td className="px-6 py-5 text-navy/70">{row.timing}</td>
+                      <td className="px-3 md:px-6 py-4 md:py-5 font-bold text-navy text-sm md:text-base">{row.stage}</td>
+                      <td className="px-3 md:px-6 py-4 md:py-5 font-semibold text-orange text-base md:text-lg whitespace-nowrap">{row.percent}</td>
+                      <td className="px-3 md:px-6 py-4 md:py-5 font-bold text-warm-yellow text-base md:text-lg whitespace-nowrap">{row.amount}</td>
+                      <td className="px-3 md:px-6 py-4 md:py-5 text-navy/70 text-sm md:text-base">{row.timing}</td>
                     </motion.tr>
                   ))}
-                  <tr className="bg-gradient-to-l from-warm-yellow/30 to-orange/20 font-bold text-xl">
-                    <td className="px-6 py-6 text-navy">סה״כ כולל:</td>
-                    <td className="px-6 py-6 text-orange">100%</td>
-                    <td className="px-6 py-6 text-navy text-2xl" colSpan="2">33,000 ₪ + מע״מ</td>
+                  <tr className="bg-gradient-to-l from-warm-yellow/30 to-orange/20 font-bold text-base md:text-xl">
+                    <td className="px-3 md:px-6 py-5 md:py-6 text-navy whitespace-nowrap">סה״כ כולל:</td>
+                    <td className="px-3 md:px-6 py-5 md:py-6 text-orange whitespace-nowrap">100%</td>
+                    <td className="px-3 md:px-6 py-5 md:py-6 text-navy text-xl md:text-2xl whitespace-nowrap" colSpan="2">33,000 ₪ + מע״מ</td>
                   </tr>
                 </tbody>
               </table>
