@@ -70,11 +70,11 @@ const Contract = ({ clientName, clientEmail, onBack }) => {
       // Load developer signature from file
       const response = await fetch('/sign.jpg');
       const blob = await response.blob();
-      const reader = new FileReader();
+      const sigReader = new FileReader();
       
       const developerSignature = await new Promise((resolve) => {
-        reader.onloadend = () => resolve(reader.result);
-        reader.readAsDataURL(blob);
+        sigReader.onloadend = () => resolve(sigReader.result);
+        sigReader.readAsDataURL(blob);
       });
 
       // Generate client signature
@@ -84,11 +84,11 @@ const Contract = ({ clientName, clientEmail, onBack }) => {
       const pdfBlob = await generatePDF();
       
       // Convert PDF to base64
-      const reader = new FileReader();
-      reader.readAsDataURL(pdfBlob);
+      const pdfReader = new FileReader();
+      pdfReader.readAsDataURL(pdfBlob);
       
-      reader.onloadend = async () => {
-        const pdfBase64 = reader.result;
+      pdfReader.onloadend = async () => {
+        const pdfBase64 = pdfReader.result;
 
         // Send to server
         const response = await fetch('http://localhost:3001/api/send-contract', {
