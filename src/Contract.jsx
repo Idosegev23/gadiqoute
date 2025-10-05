@@ -7,8 +7,8 @@ import { FileText, Download, Send, X, Loader2, Check } from 'lucide-react';
 const Contract = ({ clientName, clientEmail, onBack }) => {
   const [formData, setFormData] = useState({
     developerName: 'Triroars',
-    developerLicense: '',
-    developerAddress: '',
+    developerLicense: '300700556',
+    developerAddress: 'צבי סגל 20 א׳ אשקלון',
     clientFullName: clientName || '',
     clientLicense: '',
     clientAddress: '',
@@ -20,7 +20,6 @@ const Contract = ({ clientName, clientEmail, onBack }) => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [error, setError] = useState('');
   
-  const developerSigRef = useRef(null);
   const clientSigRef = useRef(null);
   const contractRef = useRef(null);
 
@@ -28,12 +27,8 @@ const Contract = ({ clientName, clientEmail, onBack }) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const clearSignature = (type) => {
-    if (type === 'developer') {
-      developerSigRef.current?.clear();
-    } else {
-      clientSigRef.current?.clear();
-    }
+  const clearSignature = () => {
+    clientSigRef.current?.clear();
   };
 
   const generatePDF = async () => {
@@ -64,11 +59,6 @@ const Contract = ({ clientName, clientEmail, onBack }) => {
       return;
     }
 
-    if (developerSigRef.current?.isEmpty()) {
-      setError('נא לחתום בשדה חתימת המפתח');
-      return;
-    }
-
     if (clientSigRef.current?.isEmpty()) {
       setError('נא לחתום בשדה חתימת הלקוח');
       return;
@@ -77,8 +67,17 @@ const Contract = ({ clientName, clientEmail, onBack }) => {
     setIsSending(true);
 
     try {
-      // Generate signatures
-      const developerSignature = developerSigRef.current.toDataURL();
+      // Load developer signature from file
+      const response = await fetch('/sign.jpg');
+      const blob = await response.blob();
+      const reader = new FileReader();
+      
+      const developerSignature = await new Promise((resolve) => {
+        reader.onloadend = () => resolve(reader.result);
+        reader.readAsDataURL(blob);
+      });
+
+      // Generate client signature
       const clientSignature = clientSigRef.current.toDataURL();
 
       // Generate PDF
@@ -184,33 +183,21 @@ const Contract = ({ clientName, clientEmail, onBack }) => {
                   <h3 className="text-xl font-bold text-orange">1. המפתח</h3>
                   <div>
                     <label className="block text-navy font-bold mb-2">שם:</label>
-                    <input
-                      type="text"
-                      value={formData.developerName}
-                      onChange={(e) => handleInputChange('developerName', e.target.value)}
-                      className="w-full px-4 py-3 border-2 border-cream rounded-xl focus:border-warm-yellow focus:outline-none"
-                      placeholder="שם המפתח"
-                    />
+                    <div className="w-full px-4 py-3 bg-gray-100 border-2 border-gray-200 rounded-xl text-navy font-semibold">
+                      {formData.developerName}
+                    </div>
                   </div>
                   <div>
                     <label className="block text-navy font-bold mb-2">עוסק מורשה / ח.פ:</label>
-                    <input
-                      type="text"
-                      value={formData.developerLicense}
-                      onChange={(e) => handleInputChange('developerLicense', e.target.value)}
-                      className="w-full px-4 py-3 border-2 border-cream rounded-xl focus:border-warm-yellow focus:outline-none"
-                      placeholder="מספר רישיון"
-                    />
+                    <div className="w-full px-4 py-3 bg-gray-100 border-2 border-gray-200 rounded-xl text-navy font-semibold">
+                      {formData.developerLicense}
+                    </div>
                   </div>
                   <div>
                     <label className="block text-navy font-bold mb-2">כתובת משרד:</label>
-                    <input
-                      type="text"
-                      value={formData.developerAddress}
-                      onChange={(e) => handleInputChange('developerAddress', e.target.value)}
-                      className="w-full px-4 py-3 border-2 border-cream rounded-xl focus:border-warm-yellow focus:outline-none"
-                      placeholder="כתובת מלאה"
-                    />
+                    <div className="w-full px-4 py-3 bg-gray-100 border-2 border-gray-200 rounded-xl text-navy font-semibold">
+                      {formData.developerAddress}
+                    </div>
                   </div>
                 </div>
 
@@ -418,22 +405,14 @@ const Contract = ({ clientName, clientEmail, onBack }) => {
                   <h3 className="text-xl font-bold text-orange">חתימת המפתח</h3>
                   <div>
                     <label className="block text-navy font-bold mb-2">שם: {formData.developerName}</label>
-                    <div className="border-3 border-warm-yellow rounded-xl overflow-hidden bg-white">
-                      <SignatureCanvas
-                        ref={developerSigRef}
-                        canvasProps={{
-                          className: 'w-full h-32 cursor-crosshair',
-                        }}
-                        backgroundColor="rgb(255, 255, 255)"
+                    <div className="border-3 border-warm-yellow rounded-xl overflow-hidden bg-white p-4 flex items-center justify-center">
+                      <img 
+                        src="/sign.jpg" 
+                        alt="חתימת המפתח" 
+                        className="max-h-32 object-contain"
                       />
                     </div>
-                    <button
-                      type="button"
-                      onClick={() => clearSignature('developer')}
-                      className="text-orange hover:text-red-brown font-medium text-sm mt-2"
-                    >
-                      ניקוי חתימה
-                    </button>
+                    <p className="text-sm text-green-600 font-medium mt-2">✓ חתימה קבועה</p>
                   </div>
                   <p className="text-sm text-navy/70">תאריך: {formData.contractDate}</p>
                 </div>
@@ -454,7 +433,7 @@ const Contract = ({ clientName, clientEmail, onBack }) => {
                     </div>
                     <button
                       type="button"
-                      onClick={() => clearSignature('client')}
+                      onClick={clearSignature}
                       className="text-orange hover:text-red-brown font-medium text-sm mt-2"
                     >
                       ניקוי חתימה
