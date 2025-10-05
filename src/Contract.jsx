@@ -19,9 +19,28 @@ const Contract = ({ clientName, clientEmail, onBack }) => {
   const [isSending, setIsSending] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [error, setError] = useState('');
+  const [developerSignatureBase64, setDeveloperSignatureBase64] = useState('');
   
   const clientSigRef = useRef(null);
   const contractRef = useRef(null);
+
+  // Load developer signature on component mount
+  React.useEffect(() => {
+    const loadSignature = async () => {
+      try {
+        const response = await fetch('/sign.jpg');
+        const blob = await response.blob();
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setDeveloperSignatureBase64(reader.result);
+        };
+        reader.readAsDataURL(blob);
+      } catch (error) {
+        console.error('Error loading signature:', error);
+      }
+    };
+    loadSignature();
+  }, []);
 
   const handleInputChange = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -67,15 +86,8 @@ const Contract = ({ clientName, clientEmail, onBack }) => {
     setIsSending(true);
 
     try {
-      // Load developer signature from file
-      const response = await fetch('/sign.jpg');
-      const blob = await response.blob();
-      const sigReader = new FileReader();
-      
-      const developerSignature = await new Promise((resolve) => {
-        sigReader.onloadend = () => resolve(sigReader.result);
-        sigReader.readAsDataURL(blob);
-      });
+      // Use already loaded developer signature
+      const developerSignature = developerSignatureBase64;
 
       // Generate client signature
       const clientSignature = clientSigRef.current.toDataURL();
@@ -444,11 +456,15 @@ const Contract = ({ clientName, clientEmail, onBack }) => {
                   <div>
                     <label className="block text-navy font-bold mb-2">שם: {formData.developerName}</label>
                     <div className="border-3 border-warm-yellow rounded-xl overflow-hidden bg-white p-4 flex items-center justify-center">
-                      <img 
-                        src="/sign.jpg" 
-                        alt="חתימת המפתח" 
-                        className="max-h-32 object-contain"
-                      />
+                      {developerSignatureBase64 ? (
+                        <img 
+                          src={developerSignatureBase64}
+                          alt="חתימת המפתח" 
+                          className="max-h-32 object-contain"
+                        />
+                      ) : (
+                        <div className="text-navy/50">טוען חתימה...</div>
+                      )}
                     </div>
                     <p className="text-sm text-green-600 font-medium mt-2">✓ חתימה קבועה</p>
                   </div>
