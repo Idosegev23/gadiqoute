@@ -159,6 +159,62 @@ const Contract = ({ clientName, clientEmail, onBack }) => {
           </motion.div>
         )}
 
+        {/* Input Form Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-white rounded-3xl shadow-2xl p-8 mb-8"
+        >
+          <h2 className="text-3xl font-bold text-navy mb-6 text-center">מילוי פרטי הלקוח</h2>
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <div>
+              <label className="block text-navy font-bold mb-2">שם מלא: *</label>
+              <input
+                type="text"
+                value={formData.clientFullName}
+                onChange={(e) => handleInputChange('clientFullName', e.target.value)}
+                className="w-full px-4 py-3 border-2 border-cream rounded-xl focus:border-warm-yellow focus:outline-none text-lg transition-colors"
+                placeholder="הזן שם מלא"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-navy font-bold mb-2">עוסק מורשה / ח.פ:</label>
+              <input
+                type="text"
+                value={formData.clientLicense}
+                onChange={(e) => handleInputChange('clientLicense', e.target.value)}
+                className="w-full px-4 py-3 border-2 border-cream rounded-xl focus:border-warm-yellow focus:outline-none text-lg transition-colors"
+                placeholder="מספר רישיון (אופציונלי)"
+              />
+            </div>
+            <div>
+              <label className="block text-navy font-bold mb-2">כתובת:</label>
+              <input
+                type="text"
+                value={formData.clientAddress}
+                onChange={(e) => handleInputChange('clientAddress', e.target.value)}
+                className="w-full px-4 py-3 border-2 border-cream rounded-xl focus:border-warm-yellow focus:outline-none text-lg transition-colors"
+                placeholder="כתובת מלאה (אופציונלי)"
+              />
+            </div>
+            <div>
+              <label className="block text-navy font-bold mb-2">אימייל: *</label>
+              <input
+                type="email"
+                value={formData.clientEmail}
+                onChange={(e) => handleInputChange('clientEmail', e.target.value)}
+                className="w-full px-4 py-3 border-2 border-cream rounded-xl focus:border-warm-yellow focus:outline-none text-lg transition-colors"
+                placeholder="your@email.com"
+                required
+              />
+            </div>
+          </div>
+          <p className="text-center text-sm text-navy/60 mt-4">
+            * שדות חובה - הפרטים יופיעו אוטומטית בהסכם למטה
+          </p>
+        </motion.div>
+
         {/* Contract Form */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -204,46 +260,28 @@ const Contract = ({ clientName, clientEmail, onBack }) => {
                 <div className="space-y-4">
                   <h3 className="text-xl font-bold text-orange">2. הלקוח</h3>
                   <div>
-                    <label className="block text-navy font-bold mb-2">שם מלא: *</label>
-                    <input
-                      type="text"
-                      value={formData.clientFullName}
-                      onChange={(e) => handleInputChange('clientFullName', e.target.value)}
-                      className="w-full px-4 py-3 border-2 border-cream rounded-xl focus:border-warm-yellow focus:outline-none"
-                      placeholder="שם הלקוח"
-                      required
-                    />
+                    <label className="block text-navy font-bold mb-2">שם מלא:</label>
+                    <div className="w-full px-4 py-3 bg-white border-2 border-navy/20 rounded-xl text-navy font-semibold min-h-[50px] flex items-center">
+                      {formData.clientFullName || '_____________________________'}
+                    </div>
                   </div>
                   <div>
                     <label className="block text-navy font-bold mb-2">עוסק מורשה / ח.פ:</label>
-                    <input
-                      type="text"
-                      value={formData.clientLicense}
-                      onChange={(e) => handleInputChange('clientLicense', e.target.value)}
-                      className="w-full px-4 py-3 border-2 border-cream rounded-xl focus:border-warm-yellow focus:outline-none"
-                      placeholder="מספר רישיון"
-                    />
+                    <div className="w-full px-4 py-3 bg-white border-2 border-navy/20 rounded-xl text-navy font-semibold min-h-[50px] flex items-center">
+                      {formData.clientLicense || '_____________________________'}
+                    </div>
                   </div>
                   <div>
                     <label className="block text-navy font-bold mb-2">כתובת:</label>
-                    <input
-                      type="text"
-                      value={formData.clientAddress}
-                      onChange={(e) => handleInputChange('clientAddress', e.target.value)}
-                      className="w-full px-4 py-3 border-2 border-cream rounded-xl focus:border-warm-yellow focus:outline-none"
-                      placeholder="כתובת מלאה"
-                    />
+                    <div className="w-full px-4 py-3 bg-white border-2 border-navy/20 rounded-xl text-navy font-semibold min-h-[50px] flex items-center">
+                      {formData.clientAddress || '_____________________________'}
+                    </div>
                   </div>
                   <div>
-                    <label className="block text-navy font-bold mb-2">אימייל: *</label>
-                    <input
-                      type="email"
-                      value={formData.clientEmail}
-                      onChange={(e) => handleInputChange('clientEmail', e.target.value)}
-                      className="w-full px-4 py-3 border-2 border-cream rounded-xl focus:border-warm-yellow focus:outline-none"
-                      placeholder="your@email.com"
-                      required
-                    />
+                    <label className="block text-navy font-bold mb-2">אימייל:</label>
+                    <div className="w-full px-4 py-3 bg-white border-2 border-navy/20 rounded-xl text-navy font-semibold min-h-[50px] flex items-center">
+                      {formData.clientEmail || '_____________________________'}
+                    </div>
                   </div>
                 </div>
               </div>
